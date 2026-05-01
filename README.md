@@ -26,8 +26,8 @@ Hệ thống bao gồm:
 
 ### Bước 1: Clone dự án
 ```bash
-git clone https://github.com/Hoa2-p/NP-Education-.git
-cd NP-Education-
+git clone https://github.com/dothanhhxx/NPEduLMS.git
+cd NPEduLMS
 ```
 
 ### Bước 2: Cài đặt Dependencies
