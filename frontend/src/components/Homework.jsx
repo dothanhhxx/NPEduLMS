@@ -3,7 +3,7 @@ import { homeworkAPI } from '../api';
 import { FileText, Search, Upload, UploadCloud, File, FileIcon, Video, CheckCircle, AlertTriangle, Download, X, Star, BookOpen, Clock, ChevronRight } from 'lucide-react';
 import './Homework.css';
 
-const API_BASE = `http://${window.location.hostname}:5000`;
+const API_BASE = import.meta.env.VITE_API_BASE_URL || `http://${window.location.hostname}:5000`;
 
 const Homework = ({ authUser, classes }) => {
     const [selectedClassId, setSelectedClassId] = useState('all');

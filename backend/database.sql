@@ -103,11 +103,11 @@ CREATE TABLE IF NOT EXISTS materials (
     FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE
 );
 
--- Thêm dữ liệu mẫu cho materials
-INSERT INTO materials (class_id, title, file_url) VALUES 
-(1, 'Bài 1: Giới thiệu về ReactJS', 'https://example.com/videos/react-intro.mp4'),
-(1, 'Tài liệu đọc Bài 1 (React Core)', 'https://example.com/pdf/react-core.pdf'),
-(1, 'Slide thuyết trình State & Props', 'https://example.com/slides/state-props.pdf');
+-- Thêm dữ liệu mẫu cho materials (Cần chèn dữ liệu vào bảng classes trước khi insert)
+-- INSERT INTO materials (class_id, title, file_url) VALUES 
+-- (1, 'Bài 1: Giới thiệu về ReactJS', 'https://example.com/videos/react-intro.mp4'),
+-- (1, 'Tài liệu đọc Bài 1 (React Core)', 'https://example.com/pdf/react-core.pdf'),
+-- (1, 'Slide thuyết trình State & Props', 'https://example.com/slides/state-props.pdf');
 
 
 -- 10. Bảng Điểm danh

@@ -7,7 +7,7 @@ import './LearningMaterials.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-const API_BASE = `http://${window.location.hostname}:5000`;
+const API_BASE = import.meta.env.VITE_API_BASE_URL || `http://${window.location.hostname}:5000`;
 
 // ── Type info ──────────────────────────────────────────────────
 const getTypeInfo = (type = '', url = '', name = '') => {
