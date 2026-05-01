@@ -1,0 +1,95 @@
+const fs = require('fs');
+
+const collection = {
+    "info": {
+        "name": "NP Education - Sprint 2 APIs",
+        "description": "Bộ API hoàn hảo phục vụ Web Quản lý Học Sinh Trung tâm Tiếng Anh NP",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Authentication (Login & Register)",
+            "item": [
+                {
+                    "name": "Đăng ký User Mới (Register)",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "url": { "raw": "http://localhost:5000/api/users/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "users", "register"] },
+                        "body": { "mode": "raw", "raw": "{\n    \"email\": \"test@np.edu.vn\",\n    \"password\": \"123456\",\n    \"full_name\": \"Nguyễn Văn Test\",\n    \"role_name\": \"Student\",\n    \"phone\": \"0909999999\"\n}" }
+                    }
+                },
+                {
+                    "name": "Đăng nhập Cấp Token (Login)",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "url": { "raw": "http://localhost:5000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "login"] },
+                        "body": { "mode": "raw", "raw": "{\n    \"email\": \"admin@np.edu.vn\",\n    \"password\": \"123456\"\n}" }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "2. Khối Lớp Học (Classes) - Cần Token Header",
+            "item": [
+                {
+                    "name": "Tạo Lớp Học Mới (Admin Auth)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            { "key": "Content-Type", "value": "application/json" },
+                            { "key": "Authorization", "value": "Bearer {{YOUR_TOKEN_HERE}}" }
+                        ],
+                        "url": { "raw": "http://localhost:5000/api/classes", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "classes"] },
+                        "body": { "mode": "raw", "raw": "{\n    \"class_name\": \"Lớp Test\",\n    \"branch_id\": 1,\n    \"teacher_id\": 1\n}" }
+                    }
+                },
+                {
+                    "name": "Lấy Danh Sách All Lớp Học",
+                    "request": {
+                        "method": "GET",
+                        "header": [{ "key": "Authorization", "value": "Bearer {{YOUR_TOKEN_HERE}}" }],
+                        "url": { "raw": "http://localhost:5000/api/classes", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "classes"] }
+                    }
+                },
+                {
+                    "name": "Lấy Sĩ số Học sinh Của 1 Lớp (Class ID: 1)",
+                    "request": {
+                        "method": "GET",
+                        "header": [{ "key": "Authorization", "value": "Bearer {{YOUR_TOKEN_HERE}}" }],
+                        "url": { "raw": "http://localhost:5000/api/classes/1/students", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "classes", "1", "students"] }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "3. Khối Thời Khóa Biểu & Kèm Tài liệu",
+            "item": [
+                {
+                    "name": "Xem TKB (Tự nhận diện Role theo Token)",
+                    "request": {
+                        "method": "GET",
+                        "header": [{ "key": "Authorization", "value": "Bearer {{YOUR_TOKEN_HERE}}" }],
+                        "url": { "raw": "http://localhost:5000/api/schedules", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "schedules"] }
+                    }
+                },
+                {
+                    "name": "Đóng tiền cho 1 Lớp học (Post Tài liệu Slide)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            { "key": "Content-Type", "value": "application/json" },
+                            { "key": "Authorization", "value": "Bearer {{YOUR_TOKEN_HERE}}" }
+                        ],
+                        "url": { "raw": "http://localhost:5000/api/materials", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "materials"] },
+                        "body": { "mode": "raw", "raw": "{\n    \"class_id\": 1,\n    \"title\": \"Slide test.pdf\",\n    \"file_url\": \"https://link.com/file\"\n}" }
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+fs.writeFileSync('Postman_Sprint2_APIs.json', JSON.stringify(collection, null, 2));
+console.log("-> ✅ Đã Generate file Postman Collection: Postman_Sprint2_APIs.json");

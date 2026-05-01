@@ -1,0 +1,430 @@
+/* ===== AUTH PAGES - GREEN GRADIENT THEME ===== */
+
+:root {
+  --login-bg-start: #0d5a2e;
+  --login-bg-mid: #147a3d;
+  --login-bg-end: #1a9450;
+  --login-btn: #a8f5a0;
+  --login-btn-hover: #7ee87a;
+  --login-input-bg: rgba(255, 255, 255, 0.15);
+  --login-input-border: rgba(255, 255, 255, 0.3);
+  --login-text: #ffffff;
+  --login-accent: #f0c040;
+  --login-accent-subtle: rgba(255, 220, 50, 0.3);
+}
+
+/* ===== AUTH LAYOUT ===== */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  background: linear-gradient(
+    135deg,
+    var(--login-bg-start) 0%,
+    var(--login-bg-mid) 50%,
+    var(--login-bg-end) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative glowing orb */
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  background: var(--login-accent-subtle);
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+/* Decorative bottom orb */
+.auth-page::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  right: 20%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 220, 50, 0.15);
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+/* ===== LEFT PANEL (FORM) ===== */
+.auth-left {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== RIGHT PANEL (DECORATIONS) ===== */
+.auth-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== LOGO ===== */
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.auth-logo-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-logo-text {
+  color: var(--login-text);
+  font-family: 'Nunito', sans-serif;
+}
+
+.auth-logo-text .line1 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.auth-logo-text .line2 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* ===== FORM CONTAINER ===== */
+.auth-form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 380px;
+}
+
+.auth-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--login-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.auth-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ===== FORM FIELDS ===== */
+.auth-field {
+  margin-bottom: 1.25rem;
+}
+
+.auth-field label {
+  display: block;
+  color: var(--login-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.auth-input-wrapper {
+  position: relative;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: var(--login-input-bg);
+  border: 1px solid var(--login-input-border);
+  border-radius: 10px;
+  color: var(--login-text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.auth-input:focus {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.auth-input.has-toggle {
+  padding-right: 3rem;
+}
+
+.auth-toggle-btn {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.auth-toggle-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== FORGOT PASSWORD LINK ===== */
+.auth-forgot {
+  text-align: right;
+  margin-bottom: 1.5rem;
+  margin-top: -0.5rem;
+}
+
+.auth-forgot a,
+.auth-forgot button {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.auth-forgot a:hover,
+.auth-forgot button:hover {
+  color: var(--login-text);
+  text-decoration: underline;
+}
+
+/* ===== BUTTONS ===== */
+.auth-btn-primary {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--login-btn);
+  color: #1a5c2a;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 14px rgba(168, 245, 160, 0.35);
+}
+
+.auth-btn-primary:hover {
+  background: var(--login-btn-hover);
+  box-shadow: 0 6px 18px rgba(168, 245, 160, 0.5);
+}
+
+.auth-btn-primary:active {
+  transform: scale(0.98);
+}
+
+.auth-btn-outline {
+  width: 100%;
+  padding: 0.9rem;
+  background: transparent;
+  color: var(--login-text);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.auth-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== BACK TO LOGIN LINK ===== */
+.auth-back-link {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.auth-back-link button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-family: inherit;
+  padding: 0;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.auth-back-link button:hover {
+  color: var(--login-text);
+}
+
+/* ===== ERROR MESSAGE ===== */
+.auth-error {
+  background: rgba(255, 80, 80, 0.2);
+  border: 1px solid rgba(255, 100, 100, 0.4);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #ffd0d0;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== EMAIL DISPLAY ===== */
+.auth-email-display {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 1rem;
+  color: var(--login-text);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* ===== RIGHT PANEL DECORATIONS ===== */
+.auth-deco {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.auth-trophy {
+  font-size: 8rem;
+  filter: drop-shadow(0 8px 24px rgba(240, 192, 64, 0.5));
+  animation: float 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+.auth-deco-stars {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 1.75rem;
+  opacity: 0.85;
+}
+
+.auth-deco-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Ribbon / wave decoration */
+.auth-ribbon {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200px;
+  height: 120px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.auth-ribbon svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+/* Floating star decorations */
+.auth-star {
+  position: absolute;
+  color: var(--login-accent);
+  opacity: 0.6;
+  font-size: 1.2rem;
+  animation: twinkle 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.auth-star:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+.auth-star:nth-child(2) { top: 25%; right: 15%; animation-delay: 0.4s; }
+.auth-star:nth-child(3) { top: 70%; left: 5%; animation-delay: 0.8s; }
+.auth-star:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 1.2s; }
+.auth-star:nth-child(5) { top: 45%; left: 15%; animation-delay: 1.6s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.3); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .auth-page {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    flex: 1;
+    padding: 1.5rem;
+  }
+
+  .auth-right {
+    display: none;
+  }
+
+  .auth-form-container {
+    max-width: 100%;
+  }
+
+  .auth-title {
+    font-size: 1.6rem;
+  }
+
+  .auth-logo {
+    margin-bottom: 2rem;
+  }
+}

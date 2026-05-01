@@ -1,0 +1,617 @@
+USER STORY: VIEW STUDENTS LIST
+Card
+As a teacher 
+I want to view the list of students in my class 
+So that I know who I am teaching.
+Summary
+Allows teachers to view the list of students enrolled in their class, including student information and learning status.
+In-Scope:
+Teachers can select a class to view the student list.
+The system displays a list of students in the selected class.
+Teachers can search students by name, student ID, or phone number.
+Teachers can navigate between pages of the student list.
+Out of scope
+Teachers cannot edit student information.
+Teachers cannot add new students.
+Teachers cannot delete students from the system.
+Teachers cannot view students from other classes they do not teach.
+Trigger
+Student opens the Student List page after login
+Pre-condition
+Teacher must be logged in.
+Teacher must be assigned to at least one class.
+Student data must exist in the system.
+Business rule and error message
+Teachers can only view students from classes they are assigned to.
+Students are displayed in a table format.
+Teachers can search students using name, student ID, or phone number.
+Student status can be displayed (e.g., Studying, On hold).
+No students found -> shows "Không có học sinh nào trong lớp."
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Class selection
+Select a class to view students
+dropdown
+-
+-
+-
+yes
+Search
+Search student by name, ID, or phone
+text
+-
+-
+100
+no
+Student name
+Name of the student
+text
+1
+100
+100
+yes
+Student ID
+Unique ID of the student
+text
+1
+20
+20
+yes
+Contact
+Student
+text
+-
+-
+100
+yes
+Status
+Student learning status
+label
+-
+-
+-
+yes
+Acceptance Criteria
+The student list includes the following information:
+Student name
+Student ID
+Contact information (phone, email)
+Course name
+Learning status
+USER STORY: VIEW ASSIGNMENT DEADLINE
+Card
+As a student, 
+I want to view assignment deadlines 
+So that I can submit assignments on time.
+Summary
+Allows students to view all assignment deadlines of their enrolled courses
+.
+In-Scope:
+Student can view list of all assignments with their exact due dates and times
+Display submission status (Submitted / Not submitted / Late)
+Sort assignments by due date
+Filtering assignments by status or course.
+View detailed assignment description
+Out of scope
+Creating or editing assignments
+.
+Trigger
+Student opens the "Assignment Deadline" page after login.
+Pre-condition
+Student must be logged in
+Student must be enrolled in at least one course
+Assignment data must exist in the system
+Business rule and error message
+The list must dynamically update the "Status" based on the current system time
+If the user has no assignments assigned to them, the system shows: “Bạn không có bài tập nào sắp đến hạn.”
+Overdue assignments must be visually distinct (e.g., red text and warning icon) to alert the user.
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Bộ lọc
+Filter assignments by status (Tất cả, Chưa nộp, Đã nộp, Quá hạn)
+varchar(255)
+-
+-
+-
+no
+Tên bài tậo
+Name of assignment
+varchar(255)
+1
+200
+200
+yes
+Tên môn học
+Name of course
+varchar(255)
+1
+100
+100
+yes
+Hạn nộp
+Deadline date and time
+datetime
+-
+-
+-
+yes
+Trạng thái
+Submission status
+label
+-
+-
+-
+yes
+Xem chi tiết
+Redirect to assignment detail page
+button
+-
+-
+-
+no
+Acceptance Criteria
+Student can open the Assignment Deadline page after login.
+System displays list of assignments sorted by nearest due date.
+Each assignment shows title, course name, due date, and status.
+Student can filter assignments by course.
+Student can search assignments by title.
+Overdue assignments are clearly highlighted.
+System displays the empty state message if no assignment exists.
+Student can click “View Detail” to see assignment information.
+USER STORY: UPLOAD LEARNING MATERIALS
+Card
+As a teacher, 
+I want to upload learning materials 
+So that students can access learning resources.
+Summary
+Allows teachers to upload learning materials (PDF, video, slides, documents) for their assigned courses.
+In-Scope:
+Uploading physical files (PDF, DOCX, PPTX, MP4).
+Adding material titles.
+Assigning the material to a specific course and lesson/module.
+Out of scope
+Bulk upload multiple files at once
+Preview file before upload
+File size auto compression
+Integration with external storage (Google Drive, Dropbox)
+Tracking whether a student has completely read/watched the material.
+Trigger
+Teacher clicks the "Upload Material" button from the Learning Materials page.
+Pre-condition
+Teacher must be logged in.
+Teacher must be assigned to at least one class.
+Student data must exist in the system.
+Business rule and error message
+Teacher can only upload materials to courses they are assigned to.
+File size must not exceed 100MB.
+Only allowed file formats can be uploaded.
+Title and File cannot be empty. If empty, show: “Vui lòng nhập tên tài liệu và chọn tệp tải lên.”
+If file format invalid → show:
+ “Định dạng tệp không được hỗ trợ. Vui lòng chọn tệp PDF, Word, PowerPoint hoặc Video.”
+If file exceeds size limit → show:
+ “Dung lượng tệp vượt quá giới hạn cho phép (Tối đa 100MB).”
+If upload successful → show:
+ “Tài liệu tải lên thành công”
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Môn học
+Select course
+dropdown
+-
+-
+-
+yes
+Tên tài liệu
+Name of material
+varchar(255)
+1
+200
+200
+yes
+Mô tả
+Material description
+varchar(255)
+-
+-
+-
+no
+Chọn file
+Select file from device
+file
+-
+100MB
+-
+yes
+Tải lên
+Submit material to system
+button
+-
+-
+-
+yes
+Hủy
+Hủy tải lên 
+button
+-
+-
+-
+no
+Acceptance Criteria
+Teacher can open Upload Learning Materials page after login.
+Teacher can select a course.
+Teacher can upload a supported file type.
+System validates file size and format.
+System prevents upload if required fields are empty.
+After successful upload, material appears in course materials list.
+Error messages are displayed clearly if validation fails.
+Once created, the material automatically appears in the "Learning material" page for all students enrolled in that specific course.
+USER STORY: CREATE ASSIGNMENT
+Card
+As a teacher, 
+I want to create assignments 
+So that students can practice what they learned.
+Summary
+Allows teachers to create assignments for their assigned courses.
+In-Scope:
+Setting assignment title and detailed instructions.
+Setting a start date and a deadline (due date).
+Attaching reference materials or template files for the assignment.
+Out of scope
+Setting the maximum score for the assignment.
+System sends notification to enrolled students after assignment creation
+Automatic grading
+Trigger
+Teacher clicks the “Create Assignment” button from the Assignment Management page.
+Pre-condition
+Teacher must be logged in.
+Teacher must be assigned to at least one class.
+Course must exist in the system
+Business rule and error message
+Teacher can only create assignments for courses they are assigned to.
+Assignment title cannot be empty.
+Due date must be in the future and cannot be earlier than current date/time. If invalid, show: "Thời gian bắt đầu không hợp lệ."
+Attachment file size must not exceed 100MB. If exceeded, show: “Dung lượng tệp đính kèm vượt quá 100MB.”
+Title, Course/Lesson, Start Date, and Deadline cannot be empty. If empty, show: “Vui lòng điền đầy đủ các trường thông tin bắt buộc.”
+If creation successful → show:
+ “Tạo bài tập thành công.”
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Course
+Select course
+dropdown
+-
+-
+-
+yes
+Assignment Title
+Name of assignment
+varchar(255)
+1
+200
+200
+yes
+Description
+Assignment details
+varchar(255)
+1
+200
+200
+yes
+Due Date
+Deadline date
+date
+-
+-
+-
+yes
+Due Time
+Deadline time
+time
+-
+-
+-
+yes
+Attachment
+Upload reference file
+file
+-
+-
+-
+yes
+Create Button
+Submit assignment
+button
+-
+-
+-
+yes
+Cancel
+Cancel creation
+button
+-
+-
+-
+no
+Acceptance Criteria
+Teacher can open Create Assignment page after login.
+System validates required fields.
+System prevents assignment creation with past due date.
+If file attachments are added, they are successfully uploaded and linked to the assignment description.
+Upon successful creation, the system displays a success message and redirects the user to the assignment list.
+Once created, the assignment automatically appears in the "View Assignment Deadline" list for all students enrolled in that specific course.
+USER STORY: ASSIGN TEACHERS TO CLASSES
+Card
+As an admin, 
+I want to assign teachers to classes
+So that each class has an instructor.
+Summary
+Allows administrators to assign teachers to specific classes in the system.
+In-Scope:
+Admin can view list of classes
+Admin can view list of teachers
+Admin can assign one teacher to one class
+Admin can view current teacher assigned to each class
+Checking for scheduling conflicts for the selected teacher.
+System updates teaching schedule automatically after assignment
+Out of scope
+Assign multiple teachers to one class (team teaching)
+Automatic teacher-class matching
+Trigger
+Admin clicks the “Assign Teacher” button from Class Management page.
+Pre-condition
+Admin must be logged in
+Teacher account must exist and be active
+Class must exist in the system
+Business rule and error message
+One class can only have one assigned teacher.
+A teacher can be assigned to multiple classes.
+Admin cannot assign inactive teachers.
+If no teacher is selected → show:
+ “Vui lòng chọn một giáo viên chính cho lớp học”
+If class already has a teacher → show confirmation message before reassigning.
+If assignment successful → show:
+ “Giáo viên này đã được phân công vào lớp học.”
+The system must check the teacher's current schedule. If the teacher is already assigned to another class that takes place at the exact same time, show: “Giáo viên này đã có lịch dạy trùng vào thời gian của lớp học. Vui lòng chọn giáo viên khác.”
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Chọn lớp
+Select a class
+dropdown
+-
+-
+-
+yes
+Giáo viên
+Select teacher
+dropdown
+-
+-
+-
+yes
+Phân công
+Confirm assignment
+button
+-
+-
+-
+yes
+Acceptance Criteria
+Admin can open Assign Teacher page after login.
+Admin can select a class.
+Admin can select a teacher.
+System validates teacher and class exist.
+System prevents assignment without selecting teacher.
+After successful assignment:
+Teacher appears as assigned in class details.
+Teacher’s teaching schedule is updated.
+USER STORY: ENROLL STUDENT IN CLASS
+Card
+As an admin, 
+I want to enroll students in classes 
+So that they can attend the appropriate courses.
+Summary
+Allows administrators to assign students to specific classes in the system
+In-Scope:
+Admin can view list of students
+Admin can view list of classes
+Selecting a class and adding single or multiple students to it.
+Admin can view list of students currently enrolled in a class
+System updates student schedule automatically after enrollment
+Searching for existing students by Name, Email, or Student ID.
+Out of scope
+Automatic class placement based on level
+Payment processing
+Trigger
+Admin clicks the “Enroll Student” button from Class Management page.
+Pre-condition
+Admin must be logged in
+Student account must exist and be active
+Class must exist in the system
+Class must not exceed maximum capacity
+Business rule and error message
+A student can enroll in multiple classes.
+A class can contain multiple students.
+Student cannot be enrolled twice in the same class.  If the student is already on the roster, show: “Học viên này đã có trong danh sách lớp.”
+Enrollment is blocked if class reaches maximum capacity. If adding the selected student(s) exceeds this limit, show: “Lớp học đã đạt số lượng tối đa. Không thể thêm học viên.”
+If enrollment successful → show:
+ “Đã thêm học viên vào lớp thành công.”
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Class selection
+Select a class to view students
+dropdown
+-
+-
+-
+yes
+Student
+Select student
+select
+-
+-
+-
+yes
+Search
+Search student by name/email
+varchar(255)
+1
+100
+100
+no
+Enroll Button
+Confirm enrollment
+button
+-
+-
+-
+yes
+Acceptance Criteria
+Admin can open Enroll Student page after login.
+Admin can select a class.
+When the Admin searches for a student, the system returns accurate results based on the active student database.
+Admin can select one or multiple students.
+The system actively blocks the enrollment and displays the appropriate error if it violates capacity limits or duplicate rules.
+System prevents enrollment when class is full.
+After successful enrollment:
+Student appears in class student list.
+Student’s weekly schedule is updated.
+Student can access class materials and assignments.
+USER STORY: SUBMIT HOMEWORK
+Card
+As a student, 
+I want to submit homework through the system 
+So that I can send my work to the teacher easily.
+Summary
+Allows students to upload and submit homework files before the assignment deadline.
+In-Scope:
+Upload and submit homework before deadline
+View submission status (Submitted / Late / Not submitted)
+System records submission date and time
+Student can resubmit homework before deadline
+Student can view submitted file
+Out of scope
+Automatic grading
+Plagiarism detection
+Group submission
+File editing within system
+Trigger
+Student clicks the “Submit Homework” button from the Assignment Detail page.
+Pre-condition
+Student must be logged in
+Student must be enrolled in the course
+Assignment must exist
+Assignment deadline must not be expired (for on-time submission)
+Business rule and error message
+Students can only submit assignments of enrolled courses.
+Submission must be before deadline for on-time status.
+If submission after deadline → status automatically marked as “Nộp muộn”.
+File size must not exceed 100MB.
+Only allowed file types (PDF, DOC, DOCX) can be uploaded.
+If no file selected → show:
+ “Vui lòng tải lên tệp.”
+If file format invalid → show:
+ “Tệp tải lên không đúng định dạng.”
+If file exceeds size limit → show:
+ “Dung lượng tệp vượt quá giới hạn cho phép (Tối đa 100MB).”
+If submission successful → show:
+ “Nộp bài tập thành công.”
+Screen design
+Screen description
+Name
+Description
+Type
+Min
+Max
+Maxlength
+Required
+Tên bài tập
+Name of assignment
+label
+-
+-
+-
+yes
+Hạn nộp
+Deadline of assignment
+datetime
+-
+-
+-
+yes
+Tải tệp lên
+Select file from device
+file
+-
+100MB
+-
+yes
+Nộp bài
+Submit homework
+button
+-
+-
+-
+yes
+Hủy
+Cancel submission
+button
+-
+-
+-
+no
+Trạng thái nộp bài
+Shows current status
+label
+-
+-
+-
+yes
+Acceptance Criteria
+System displays confirmation after successful submission
+Student can open assignment detail page.
+Student can upload homework file.
+System validates file size and format.
+System records submission date and time.
+The teacher can immediately see the student's submitted files and timestamp in their dashboard.
